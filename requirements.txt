@@ -1,0 +1,4 @@
+wagtail>=7.0
+wagtail-bakery>=0.8
+markdown>=3.5
+bleach>=6.0
