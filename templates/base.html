@@ -1,0 +1,15 @@
+{% load static wagtailcore_tags wagtailuserbar %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ page.seo_title|default:page.title }}{% endblock %} | {{ SITE_NAME }}</title>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+    {% include "includes/header.html" %}
+    <main class="container">{% block content %}{% endblock %}</main>
+    {% include "includes/footer.html" %}
+</body>
+</html>

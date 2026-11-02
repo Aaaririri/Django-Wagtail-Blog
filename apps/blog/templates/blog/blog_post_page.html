@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+<article>
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.date|date:"F j, Y" }}</p>
+    {% if page.cover_image %}{% image page.cover_image width-960 class="cover" %}{% endif %}
+    {% for block in page.body %}
+        <div class="block block-{{ block.block_type }}">{% include_block block %}</div>
+    {% endfor %}
+    {% if page.tags.all %}
+    <p class="tags">{% for tag in page.tags.all %}<span class="tag">{{ tag }}</span> {% endfor %}</p>
+    {% endif %}
+    <p><a href="{% pageurl page.get_parent %}">&larr; Back to posts</a></p>
+</article>
+{% endblock %}

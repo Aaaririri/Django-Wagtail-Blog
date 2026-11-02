@@ -1,0 +1,14 @@
+{% load wagtailcore_tags %}
+{% wagtail_site as current_site %}
+{% with root=current_site.root_page %}
+<header class="site-header">
+    <div class="container">
+        <a class="brand" href="{% pageurl root %}">{{ SITE_NAME }}</a>
+        <nav>
+            {% for item in root.get_children.live %}
+                <a href="{% pageurl item %}">{{ item.title }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+</header>
+{% endwith %}

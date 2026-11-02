@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block content %}
+<h1>{{ page.title }}</h1>
+{{ page.summary|richtext }}
+{% if page.pdf_file %}<p><a class="button" href="{{ page.pdf_file.url }}">Download PDF</a></p>{% endif %}
+
+<h2>Experience</h2>
+{% for job in page.experiences.all %}
+<article class="entry">
+    <h3>{{ job.role }} &middot; {{ job.company }}</h3>
+    <p class="meta">{{ job.start_date|date:"M Y" }} &ndash; {% if job.end_date %}{{ job.end_date|date:"M Y" }}{% else %}Present{% endif %}</p>
+    <p>{{ job.description|linebreaksbr }}</p>
+</article>
+{% endfor %}
+
+<h2>Education</h2>
+{% for edu in page.education_entries.all %}
+<article class="entry">
+    <h3>{{ edu.degree }} &middot; {{ edu.institution }}</h3>
+    <p class="meta">{{ edu.start_year|default:"" }}{% if edu.end_year %} &ndash; {{ edu.end_year }}{% endif %}</p>
+</article>
+{% endfor %}
+
+<h2>Skills</h2>
+<ul class="skills">
+    {% for skill in page.skills.all %}<li>{{ skill.name }}{% if skill.category %} <small>({{ skill.category }})</small>{% endif %}</li>{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+<h1>{{ page.title }}</h1>
+{{ page.intro|richtext }}
+{% for post in posts %}
+<article class="post-card">
+    {% if post.cover_image %}{% image post.cover_image fill-320x180 %}{% endif %}
+    <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+    <p class="meta">{{ post.date|date:"F j, Y" }}</p>
+    <p>{{ post.intro }}</p>
+</article>
+{% empty %}
+<p>No posts yet.</p>
+{% endfor %}
+{% endblock %}

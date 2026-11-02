@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block content %}
+<section class="hero">
+    <h1>{{ page.hero_title|default:page.title }}</h1>
+    <p class="lead">{{ page.hero_subtitle }}</p>
+    {{ page.intro|richtext }}
+</section>
+{% endblock %}

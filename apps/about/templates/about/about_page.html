@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+<h1>{{ page.title }}</h1>
+{% if page.headline %}<p class="lead">{{ page.headline }}</p>{% endif %}
+{% if page.photo %}{% image page.photo fill-240x240 class="avatar" %}{% endif %}
+{{ page.bio|richtext }}
+<h2>Contact</h2>
+<ul class="contact">
+    {% if page.email %}<li>Email: <a href="mailto:{{ page.email }}">{{ page.email }}</a></li>{% endif %}
+    {% if page.phone %}<li>Phone: {{ page.phone }}</li>{% endif %}
+    {% if page.location %}<li>Location: {{ page.location }}</li>{% endif %}
+    {% for link in page.contact_links.all %}
+        <li><a href="{{ link.url }}" rel="me noopener">{{ link.label }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
