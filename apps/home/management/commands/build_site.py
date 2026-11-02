@@ -15,6 +15,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         call_command("collectstatic", interactive=False, verbosity=0)
         call_command("build")
+        (Path(settings.BUILD_DIR) / ".nojekyll").touch()
         base = settings.BASE_PATH
         if not base:
             return

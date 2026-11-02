@@ -101,6 +101,7 @@ WAGTAILEMBEDS_RESPONSIVE_HTML = True
 BUILD_DIR = str(BASE_DIR / "build")
 BAKERY_VIEWS = (
     "wagtailbakery.views.AllPublishedPagesView",
+    "bakery.views.Buildable404View",
     "apps.home.api.views.SiteJSONView",
     "apps.about.api.views.AboutJSONView",
     "apps.resume.api.views.ResumeJSONView",
